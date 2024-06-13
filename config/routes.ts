@@ -37,6 +37,71 @@ export default [
           
         ],
       },
+      {
+        path: '/data-analysis',
+          layout: false,
+          routes: [
+            {
+              path: '/data-analysis',
+              layout: false,
+              name: 'data-analysis',
+              component: './data-analysis',
+            },
+            
+          ],
+        },
+        {
+          path: '/automation',
+            layout: false,
+            routes: [
+              {
+                path: '/automation',
+                layout: false,
+                name: 'automation',
+                component: './automation',
+              },
+              
+            ],
+          },
+          {
+            path: '/mobile',
+              layout: false,
+              routes: [
+                {
+                  path: '/mobile',
+                  layout: false,
+                  name: 'mobile',
+                  component: './mobile',
+                },
+                
+              ],
+            },
+            {
+              path: '/web',
+                layout: false,
+                routes: [
+                  {
+                    path: '/web',
+                    layout: false,
+                    name: 'web',
+                    component: './web',
+                  },
+                  
+                ],
+              },
+              {
+                path: '/survey',
+                  layout: false,
+                  routes: [
+                    {
+                      path: '/survey',
+                      layout: false,
+                      name: 'survey',
+                      component: './survey',
+                    },
+                    
+                  ],
+                },
   {
     path: '/user',
     layout: false,

@@ -9,6 +9,7 @@ import Header from '../../../components/Header';
 import Banner from '../../../components/Banner';
 import Clients from '../clients';
 import { Link } from "react-router-dom";
+import { Row, Col } from 'antd';
 
 import { queryFakeList } from './service';
 import useStyles from './style.style';
@@ -17,8 +18,8 @@ import {
   HomeOutlined,
   LoadingOutlined,
   SettingFilled,
-  SmileOutlined,
-  SyncOutlined,PhoneOutlined,CaretDownOutlined,CaretRightOutlined
+  SmileOutlined,GlobalOutlined,SettingOutlined,FundProjectionScreenOutlined,AuditOutlined,
+  SyncOutlined,PhoneOutlined,CaretDownOutlined,CaretRightOutlined,MobileFilled,AreaChartOutlined 
 } from '@ant-design/icons';
 import Faq from '../../faq';
 
@@ -27,94 +28,102 @@ import Faq from '../../faq';
 const { Paragraph } = Typography;
 const Home = () => {
   const { styles } = useStyles();
-  const { data, loading } = useRequest(() => {
-    return queryFakeList({
-      count: 5,
-    });
-  });
-  const list = data?.list || [];
+
+  const data = [
+    {
+      id:1,
+      title: 'Mobile App Design & Development',
+      description: 'Mobile App Design & Development',
+      url: '/mobile',
+      icon:<MobileFilled style={{ fontSize: '220%',color:'#5DCAF5'}}/>
+    },
+    {
+      id:2,
+      title: 'Web Design & Development',
+      description: 'Web App Design & Development',
+      url: '/web',
+      icon:<GlobalOutlined  style={{ fontSize: '220%',color:'#5DCAF5'}}/>
+    },
+    {
+      id:3,
+      title: 'Data analysis & Visualization',
+      description: 'Web App Design & Development',
+      url: '/data-analysis',
+      icon:<FundProjectionScreenOutlined style={{ fontSize: '220%',color:'#5DCAF5'}}/>
+      
+    },
+    {
+      id:4,
+      title: 'Automation',
+      description: 'Web App Design & Development',
+      url: '/automation',
+      icon:<SettingOutlined  style={{ fontSize: '220%',color:'#5DCAF5'}}/>  
+    },
+    {
+      id:5,
+      title: 'Micro Services Development',
+      description: 'Web App Design & Development',
+      url: '/micro-services',
+      icon:<MobileFilled style={{ fontSize: '220%',color:'#5DCAF5'}}/>
+    },
+    {
+      id:6,
+      title: 'Field Survey Development',
+      description: 'Web App Design & Development',
+      url: '/survey',
+      icon:<AuditOutlined  style={{ fontSize: '220%',color:'#5DCAF5'}}/>
+    },
+  ];
 
 
-  const nullData: Partial<CardListItemDataType> = {};
   return (
     <>
 
     <Header/>
     <Banner/>
     <Clients/>
+
     <PageContainer style={{backgroundColor:"#F0F0F0"}}>
       <div className={styles.cardList}>
-        <List<Partial<CardListItemDataType>>
-          rowKey="id"
-          loading={loading}
-          grid={{
-            gutter: 16,
-            xs: 1,
-            sm: 2,
-            md: 3,
-            lg: 3,
-            xl: 3,
-            xxl: 3,
-          }}
-          dataSource={[nullData, ...list]}
-          renderItem={(item) => {
-            if (item && item.id) {
-              return (
-                <List.Item key={item.id}>
-                  <Card
-                    hoverable
-                    className={styles.card} 
-                    // actions={[<a key="option1">操作一</a>, <a key="option2"></a>]}
-                  >
-                    <Card.Meta
-                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
-                      title={<a>{item.title}</a>}
-                      description={
-                        <>
-                        <Paragraph
-                          className={styles.item}
-                          ellipsis={{
-                            rows: 3,
-                          }}
-                        >
-                          {item.description}
-                        </Paragraph>
-                        <Link to="/home" className="link-span" relative="path">
-                          Learn More<span>  <CaretRightOutlined /></span>
-                        </Link>
-                        </>
+          <List
+            grid={{
+              gutter: 16,
+              xs: 1,
+              sm: 2,
+              md: 3,
+              lg: 3,
+              xl: 3,
+              xxl: 3,
+            }}
+            dataSource={data}
+            renderItem={(item) => (
+                  <List.Item >
+                      <Card
+                        hoverable
+                        className={styles.card} 
+                        actions={[<a key="option2" style={{color: "#da3451", fontFamily:"IBM Plex Mono",fontWeight:'bold'}}>READ MORE</a>]}
+                      >
+                        <Card.Meta
+                          avatar={item.icon}
+                          title={<p style={{color: "#22262a", fontFamily:"IBM Plex Mono",fontWeight:'bold',textTransform: 'uppercase'}}>{item.title}</p>}
+                          description={
+                            <Paragraph
+                              className={styles.item}
+                              ellipsis={{
+                                rows: 3,
+                              }}
+                            >
+                              在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很 ，会出现不同的设计规范和实现方式，但其中往往存在很
+                            </Paragraph>
+                          }
+                        />
+                      </Card>
+                    </List.Item>
+            )}
+          />
 
-                      }
-                    />
-                  </Card>
-                </List.Item>
-              );
-            }
-            return (
-              <List.Item key={item.id}>
-                  <Card
-                    hoverable
-                    className={styles.card} 
-                  >
-                    <Card.Meta
-                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
-                      title={<a>Bootstrap</a>}
-                      description={
-                        <Paragraph
-                          className={styles.item}
-                          ellipsis={{
-                            rows: 3,
-                          }}
-                        >
-                          在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很
-                        </Paragraph>
-                      }
-                    />
-                  </Card>
-                </List.Item>
-            );
-          }}
-        />
+          
+    
       </div>
 
       {/* consultation process */}

@@ -47,11 +47,6 @@ const Consulting = () => {
   const nullData: Partial<CardListItemDataType> = {};
   return (
     <>
-    <div style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <h2 style={{alignSelf:'center'}}>Hello</h2>
-        <h2>Hello Good boy</h2>
-
-      </div>
     <PageContainer content={content} extraContent={extraContent} style={{backgroundColor:"#F0F0F0"}}>
       
       <div className={styles.cardList}>

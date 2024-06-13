@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import GitHubButton from 'react-github-button';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
-import { Button } from 'antd';
+import { Button,Flex,Modal } from 'antd';
 import BannerSVGAnim from './BannerSVGAnim';
+import StepForm from '../pages/form/step-form';
 
 function Banner(props) {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="banner-wrapper">
       {props.isMobile && (
@@ -34,14 +50,21 @@ function Banner(props) {
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
         </p>
         <div key="button" className="button-wrapper">
-          <a href="http://preview.pro.ant.design" target="_blank" rel="noopener noreferrer">
-            <Button type="primary">
-              LEARN MORE
-            </Button>
-          </a>
-          <Button style={{ margin: '0 16px' }} type="primary" ghost>
-            BOOK A MEETING
-          </Button>
+          
+
+          <Flex gap="small">
+              
+                <Button type="primary" style={{ background: "#da3451", fontFamily:"IBM Plex Mono",fontWeight:'bold'}}>
+                  LEARN MORE
+                </Button>
+              
+              
+              <Button type="text" danger onClick={showModal}  style={{ fontFamily:"IBM Plex Mono",fontWeight:'bold',borderWidth:1,borderColor:'#da3451',marginTop:2}}>
+                BOOK A MEETING
+              </Button>
+              
+
+          </Flex>
           {/* <GitHubButton
             key="github-button"
             type="stargazers"
@@ -55,6 +78,10 @@ function Banner(props) {
           <BannerSVGAnim />
         </TweenOne>
       )}
+
+      <Modal title="Book an Introduction meeting with our team" width={1000} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <StepForm/>
+      </Modal>
     </div>
   );
 }
